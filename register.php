@@ -1,6 +1,14 @@
 <?php 
 session_start();
-include('includes/header.php'); ?>
+
+if(isset($_SESSION['authentication'])){
+    header('Location:index.php');
+    exit();
+}
+
+include('includes/header.php');
+
+?>
 
 <?php  
 if(isset($_SESSION['message']))    { ?>
