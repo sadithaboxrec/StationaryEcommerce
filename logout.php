@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if(isset($_SESSION['authentication'])){
 
     unset($_SESSION['authentication']);
@@ -10,4 +12,4 @@ if(isset($_SESSION['authentication'])){
 
 header('Location:index.php');
 
-?>
+?> 

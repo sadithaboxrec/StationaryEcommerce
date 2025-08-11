@@ -11,7 +11,21 @@
             <li><a href="#">Page1</a></li>
             <li><a href="#">Page2</a></li>
             <li><a href="#">Page3</a></li>
-            <li><a href="#">Page4</a></li>
+
+            <?php
+                      if(isset($_SESSION['authentication'])){
+            ?>
+                    <li><?= $_SESSION['authentication_user']['name']; ?></li>
+                    <li><a href="logout.php">Log Out</a></li>
+
+            <?php
+            }else{
+            ?>
+                        <li><a href="login.php">Login</a></li>
+            <?php
+            }
+            ?>
+
         </ul>
     </div>
 </nav>
