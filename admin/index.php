@@ -1,149 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin-Dashboard</title>
-
-  <!-- styles -->
-  <link rel="stylesheet" href="assest/css/dashboardstyle.css">
-  <!-- fontawesome CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" >
-</head>
-<body>
-
+<?php
+include('includes/header.php');
+?>
   <!--Sidebar-->
 
   <div class="admin-container">
 
+<?php
+include('includes/sidebar.php');
+?>
 
-    <div class="sidebar">
-
-      
-      <div class="sidebar-brand">
-        <h1> <span>Saditha</span>  </h1>
-      </div>
-
-      <div class="sidebar-menu">
-
-        <ul>
-
-          <li>
-            <a href="">
-              <span class="icon">
-                <i class="fa-solid fa-house-user"></i>
-              </span>
-              <span class="title">Dashboard</span>
-            </a>
-          </li>
-  
-          <li>
-            <a href="#">
-              <span class="icon">
-                <i class="fa-solid fa-user-tie"></i>
-              </span>
-              <span class="title">Admins</span>
-            </a>
-          </li>
-  
-
-          <li class="has-submenu">
-            <a href="#">
-              <span class="icon">
-                <i class="fa-solid fa-money-check-dollar"></i>
-              </span>
-              <span class="title">Orders 
-                <span class="fa-solid fa-caret-down"></span>
-              </span>
-            </a>
-            <ul class="submenu">
-              <li><a href="https://www.google.com">Add Orders</a></li>
-              <li><a href="https://fast.com/">Check Orders</a></li>
-            </ul>
-          </li>
-          
-          <li class="has-submenu">
-            <a href="javascript:void(0);">
-              <span class="icon"><i class="fa-solid fa-cart-shopping"></i></span>
-              <span class="title">Products <span class="fa-solid fa-caret-down"></span></span>
-            </a>
-            <ul class="submenu">
-              <li><a href="#">Add Orders</a></li>
-              <li><a href="#">Check Orders</a></li>
-            </ul>
-          </li>
-          
-          
-          <li class="has-submenu">
-            <a href="javascript:void(0);">
-              <span class="icon">
-                <i class="fa-solid fa-tag"></i>
-              </span>
-              <span class="title">Categories
-                <span class="fa-solid fa-caret-down"></span>
-              </span>
-            </a>
-            <ul class="submenu">
-              <li><a href="#">Add Orders</a></li>
-              <li><a href="#">Check Orders</a></li>
-            </ul>
-          </li>
-          
-          
-  
-          <li>
-            <a href="">
-              <span class="icon">
-                <i class="fa-solid fa-message"></i>
-              </span>
-              <span class="title">Messages</span>
-            </a>
-          </li>
-  
-          <li>
-            <a href="">
-              <span class="icon">
-                <i class="fa-solid fa-right-from-bracket"></i>
-              </span>
-              <span class="title">Sign-out</span>
-            </a>
-          </li>
-  
-  
-        </ul>
-      </div>
-
-
-
-    </div>   <!--Sidebar end-->
 
 
     <div class="main">
 
-      <div class="header">
 
-        <div class="toggle">
-          <i class="fa-solid fa-bars"></i>
-        </div>
-
-      
-        <div class="search">
-          <label for="">
-            <input type="search" placeholder="Search here">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </label>
-        </div> 
-      
-        <div class="current-user">
-          <img src="assest/images/saditha.jpg" alt="" width="60px" height="60px">
-          <div>
-            <h4>Saditha</h4>
-            <small>Super Admin</small>
-          </div>
-        </div>
-      
-      </div>  <!--header end-->
-
+<?php
+include('includes/navbar.php');
+?>
 
       
             <!-- Main Content -->
@@ -369,10 +242,6 @@
 
 
 
-
-
-  <script src="assest/js/dashboard.js"></script>
-</body>
-</html>
-
-
+<?php
+include('includes/footer.php');
+?>
