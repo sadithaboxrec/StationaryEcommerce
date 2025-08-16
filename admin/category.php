@@ -19,72 +19,70 @@ include('includes/navbar.php');
 ?>
 
       <!-- Main Content -->
-       <div class="container mt-5">
-          <div class="mx-auto" style="max-width: 800px;">
+        <div class="container my-5">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0 text-center">Category List</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Availability</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php  
+                                    $category = getAllDetails('categories');
 
-            <table class="table align-middle mb-0 bg-white">
-
-                    <thead class="bg-light">
-                        <tr>
-                            <th>Id</th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Availability</th>
-                            <th>Edit</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                    <?php  
-                        $category=getAllDetails('categories');
-
-                        if(mysqli_num_rows($category)>0){
-
-                            foreach($category as $item){
+                                    if(mysqli_num_rows($category) > 0){
+                                        foreach($category as $item){
                                 ?>
-                                        <tr>
+                                    <tr>
+                                        <td><?= $item['id']; ?></td>
 
-                                            <td>
-                                                <?=$item['id'];  ?>
-                                            </td>
+                                        <td>
+                                            <img src="../uploads/<?= $item['image'] ?>" alt="Category Image" class="rounded-circle" width="50" height="50">
+                                        </td>
 
-                                            <td>
-                                                <?=$item['name'];  ?>
-                                            </td>
+                                        <td><?= htmlspecialchars($item['name']); ?></td>
 
-                                            <td>
-                                                <img src="../uploads/<?= $item['image'] ?>" width="50px" height="50px"> 
-                                            </td>
+                                        <td>
+                                            <?php if ($item['availability'] == '0'): ?>
+                                                <span class="badge bg-success">Available</span>
+                                            <?php else: ?>
+                                                <span class="badge bg-danger">Unavailable</span>
+                                            <?php endif; ?>
+                                        </td>
 
-                                            <td>
-                                                <?=$item['availability'] == '0'?"avaailable":"unavailable"  ?>
-                                            </td>
-
-                                            <td>
-                                                <button type="button" class="btn btn-link btn-sm btn-rounded" href="">
+                                        <td>
+                                            <a href="edit_category.php?id=<?= $item['id']; ?>" class="btn btn-sm btn-outline-primary">
                                                 Edit
-                                                </button>
-                                            </td>
-
-                                        </tr>
+                                            </a>
+                                        </td>
+                                    </tr>
                                 <?php
-                            }
-
-
-                        }else{
-                            echo"No Data to be found";
-                        }
-
-                    ?>
-
-
-
-                    </tbody>
-            </table>
-
+                                        }
+                                    } else {
+                                ?>
+                                    <tr>
+                                        <td colspan="5" class="text-center text-muted py-4">No data found</td>
+                                    </tr>
+                                <?php
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
+
 
  
     </div> <!--Main end-->
