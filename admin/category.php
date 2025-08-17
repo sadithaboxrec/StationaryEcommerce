@@ -65,6 +65,14 @@ include('includes/navbar.php');
                                             <a href="edit_category.php?id=<?= $item['id']; ?>" class="btn btn-sm btn-outline-primary">
                                                 Edit
                                             </a>
+
+                                            <form action="categoryhandle.php" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?');">
+                                                <input type="hidden" name="category_id" value="<?= $item['id']; ?>">
+                                                <button type="submit" name="deleteCategoryBtn" class="btn btn-sm btn-outline-danger">
+                                                    Delete
+                                                </button>
+                                            </form>
+
                                         </td>
                                     </tr>
                                 <?php

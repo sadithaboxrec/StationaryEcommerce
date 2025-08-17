@@ -93,7 +93,30 @@ include('../functions/storefunctions.php');
         }
 
 
-    }    
+    } 
+    else if (isset($_POST['deleteCategoryBtn'])){
+
+        $category_id=mysqli_real_escape_string($connection,$_POST['category_id']);
+
+        $category_query=" SELECT * FROM CATEGORIES where ID='$category_id' ";
+        $category_query_run=mysqli_query($connection,$category_query);
+        $category_data=mysqli_fetch_array($category_query_run);
+        $image=$category_data['image'];
+
+        $delete_category_query=" DELETE FROM categories WHERE id='$category_id' ";
+        $delete_category_query_sql=mysqli_query($connection,$delete_category_query);
+
+        if($delete_category_query_sql){
+
+            if (file_exists("../uploads/" . $image)) {
+                unlink("../uploads/" . $image);
+            }
+            redirect("category.php","Category Deleted Successfully");
+
+        }else{
+             redirect("category.php","Something Went Wrong");
+        }
+    }   
 
 
 ?>
