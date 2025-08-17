@@ -53,7 +53,8 @@ include('includes/navbar.php');
                         <div class="row">
                             <div class="col-12">
                             <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="categoryDescription" class="form-control form-control-lg" name="catDescription"/>
+                                <textarea type="text" id="categoryDescription" class="form-control form-control-lg" name="catDescription">
+                                </textarea>
                                 <label class="form-label" for="categoryDescription" >Category Description</label>
                             </div>
 
@@ -117,7 +118,8 @@ include('includes/navbar.php');
                             <div class="col-12">
 
                              <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="metaDesc" class="form-control form-control-lg" name="metaDesc"/>
+                                <textarea type="text" id="metaDesc" class="form-control form-control-lg" name="metaDesc">
+                                </textarea>
                                 <label class="form-label" for="metaDesc">Meta Description</label>
                             </div>
 

@@ -53,12 +53,13 @@ include('includes/navbar.php');
                                         <td><?= htmlspecialchars($item['name']); ?></td>
 
                                         <td>
-                                            <?php if ($item['availability'] == '0'): ?>
+                                            <?php if ($item['availability'] == '1'): ?>
                                                 <span class="badge bg-success">Available</span>
                                             <?php else: ?>
                                                 <span class="badge bg-danger">Unavailable</span>
                                             <?php endif; ?>
                                         </td>
+
 
                                         <td>
                                             <a href="edit_category.php?id=<?= $item['id']; ?>" class="btn btn-sm btn-outline-primary">
