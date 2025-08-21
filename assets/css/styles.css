@@ -29,3 +29,44 @@
         padding: 20px;
     }
 }
+
+
+/* Container */
+.navbar-auth-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Icon section */
+.auth-icon-box i {
+    font-size: 2.2rem;
+    color: #162530;
+}
+
+/* Login/Register buttons stacked */
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+/* Button styles */
+.auth-login,
+.auth-register {
+    text-decoration: none;
+    color: #162530;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 4px 14px;
+    background: rgba(188, 212, 229, 0.4);
+    border-radius: 20px;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+}
+
+.auth-login:hover,
+.auth-register:hover {
+    background: rgba(188, 212, 229, 0.8);
+}
+
