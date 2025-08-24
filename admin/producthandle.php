@@ -136,6 +136,31 @@ if(isset($_POST['addProductBtn'])) {
 
 
 
+}elseif(isset($_POST['deleteProductBtn'])){
+
+        $product_id=mysqli_real_escape_string($connection,$_POST['product_id']);
+
+        $product_query=" SELECT * FROM PRODUCTS where ID='$product_id' ";
+        $product_query_run=mysqli_query($connection,$product_query);
+        $product_data=mysqli_fetch_array($product_query_run);
+        $image=$product_data['image'];
+
+        $delete_product_query=" DELETE FROM PRODUCTS WHERE id='$product_id' ";
+        $delete_product_query_sql=mysqli_query($connection,$delete_product_query);
+
+        if($delete_product_query_sql){
+
+            if (file_exists("../uploads/products/" . $image)) {
+                unlink("../uploads/products/" . $image);
+            }
+            redirect("products.php","Product Deleted Successfully");
+            
+
+        }else{
+             redirect("products.php","Something Went Wrong");
+             
+        }
+
 }
 else{
     header('Location:../index.php');

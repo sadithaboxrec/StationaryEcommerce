@@ -67,7 +67,7 @@ include('includes/navbar.php');
                                             </a>
 
                                             <form action="producthandle.php" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?');">
-                                                <input type="hidden" name="Product_id" value="<?= $item['id']; ?>">
+                                                <input type="hidden" name="product_id" value="<?= $item['id']; ?>">
                                                 <button type="submit" name="deleteProductBtn" class="btn btn-sm btn-outline-danger">
                                                     Delete
                                                 </button>
