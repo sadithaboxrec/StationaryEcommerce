@@ -65,6 +65,80 @@ if(isset($_POST['addProductBtn'])) {
     }
 
 
+
+}elseif(isset($_POST['updateProductBtn'])){
+
+    $product_id= mysqli_real_escape_string($connection, $_POST['product_id']);
+    $category_id = mysqli_real_escape_string($connection, $_POST['category']);
+    $proName = mysqli_real_escape_string($connection, $_POST['proName']);
+    $shortDescription = mysqli_real_escape_string($connection, $_POST['shortDescription']);
+    $proDescription = mysqli_real_escape_string($connection, $_POST['proDescription']);
+
+    $original_price = mysqli_real_escape_string($connection, $_POST['original_price']);
+    $selling_price = mysqli_real_escape_string($connection, $_POST['selling_price']);
+    $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 0;
+
+    $trending = isset($_POST['trending']) ? 1 : 0;
+    $availability = isset($_POST['availability']) ? 1 : 0;
+
+    $metaTitle = mysqli_real_escape_string($connection, $_POST['metaTitle']);
+    $metaKeywords = mysqli_real_escape_string($connection, $_POST['metaKeywords']);
+    $metaDesc = mysqli_real_escape_string($connection, $_POST['metaDesc']);
+
+    
+    $allowed_types = ['jpg', 'jpeg', 'png']; 
+    $max_file_size = 2 * 1024 * 1024;
+
+
+    $proImage=$_FILES['proImage']['name'];
+    $new_Image = $_FILES['proImage']['name'];
+    $old_Image = $_POST['old_image'];
+
+    if (!empty($new_Image)) {
+        $image_ext = strtolower(pathinfo($new_Image, PATHINFO_EXTENSION));
+        $file_size = $_FILES['proImage']['size'];
+
+        if (!in_array($image_ext, $allowed_types)) {
+            redirect("edit_product.php?id=$product_id", "Invalid file type. Only JPG, JPEG, PNG allowed.");
+        }
+
+        if ($file_size > $max_file_size) {
+            redirect("edit_product.php?id=$product_id", "File too large. Maximum 2MB allowed.");
+        }
+
+        $update_filename = time() . '.' . $image_ext;
+    } else {
+        $update_filename = $old_Image;
+    }
+
+    $path = "../uploads/products";
+
+    $product_update_query = "UPDATE products SET category_id = '$category_id',name = '$proName',short_description = '$shortDescription',     description = '$proDescription',original_price = '$original_price',selling_price = '$selling_price', quantity = '$quantity',trending = '$trending',availability = '$availability',image = '$update_filename',meta_title = '$metaTitle',meta_keywords = '$metaKeywords',meta_description = '$metaDesc' WHERE id = '$product_id'";
+
+    $product_update_query_sql=mysqli_query($connection,$product_update_query);
+
+    if($product_update_query_sql){
+
+        if ($new_Image != "" && $old_Image != "" && $update_filename != $old_Image) {
+            if (file_exists("../uploads/products/" . $old_Image)) {
+                unlink("../uploads/products/" . $old_Image);
+            }
+        }
+        redirect("products.php", "Product Updated Successfully");
+
+    }else{
+        redirect("edit_product.php?id=$product_id", "Product Update Went Wrong");
+    }
+
+
+
+
+
+
+
+}
+else{
+    header('Location:../index.php');
 }
 
 ?>
