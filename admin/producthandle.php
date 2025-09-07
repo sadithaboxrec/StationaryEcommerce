@@ -39,7 +39,7 @@ if(isset($_POST['addProductBtn'])) {
     $filename=time().'.'.$image_ext;
 
     
-    if (!in_array($file_ext, $allowed_types)) {
+    if (!in_array($image_ext, $allowed_types)) {
         redirect('addproduct.php', "Invalid file type. Only JPG, PNG allowed.");
     }
 
@@ -58,13 +58,14 @@ if(isset($_POST['addProductBtn'])) {
     
     if($product_insert_query_sql) {
 
-        move_uploaded_file($_FILES['proImage']['tmp_name'], $path.'/'.$filename);
-        redirect('addproduct.php',"Product Added Successfully");
+
+    if (move_uploaded_file($_FILES['proImage']['tmp_name'], $path . '/' . $filename)) {
+    redirect('addproduct.php', "Product Added Successfully");
     } else {
-            redirect('addproduct.php',"Something Went Wrong");
+        redirect('addproduct.php', "Product saved but image failed to upload");
     }
 
-
+}
 
 }elseif(isset($_POST['updateProductBtn'])){
 
@@ -119,11 +120,18 @@ if(isset($_POST['addProductBtn'])) {
 
     if($product_update_query_sql){
 
-        if ($new_Image != "" && $old_Image != "" && $update_filename != $old_Image) {
-            if (file_exists("../uploads/products/" . $old_Image)) {
+        if (!empty($new_Image)) {
+            
+            if (!empty($old_Image) && $old_Image != $update_filename && file_exists("../uploads/products/" . $old_Image)) {
                 unlink("../uploads/products/" . $old_Image);
             }
+
+            
+            if (!move_uploaded_file($_FILES['proImage']['tmp_name'], $path . '/' . $update_filename)) {
+                redirect("edit_product.php?id=$product_id", "Image upload failed.");
+            }
         }
+
         redirect("products.php", "Product Updated Successfully");
 
     }else{
@@ -165,5 +173,6 @@ if(isset($_POST['addProductBtn'])) {
 else{
     header('Location:../index.php');
 }
+
 
 ?>
