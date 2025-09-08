@@ -63,9 +63,13 @@ if(isset($_GET['product'])){
                             </div>
                         </div>
 
-                        <input type="number" value="1" min="1" max="10">
 
-                        <button class="buy-btn">Add to Cart</button>
+                        <div class="product-data">
+                            <input type="number" class="qty-input" value="1" min="1" max="10">
+
+                            <button class="buy-btn" value="<?= $products['id']; ?>">Add to Cart</button>
+                        </div>
+                        
                         <h4 class="mt-5 mb-5">Product Details</h4>
                         <span>
                             <?=$products['description']; ?>
