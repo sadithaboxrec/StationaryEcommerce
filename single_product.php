@@ -36,7 +36,7 @@ if(isset($_GET['product'])){
                         </div>
 
                         <div class="small-img-col">
-                         
+                            <img src="uploads/products/<?=$products['image']; ?>" width="100%" class="small-img">
                         </div>
 
                         </div>

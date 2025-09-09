@@ -9,39 +9,37 @@
 
      // }
 
-     $(document).ready(function() {
-     $('.buy-btn').click(function(e) {
-          e.preventDefault();
+$(document).ready(function() {
+    $(document).on('click', '.buy-btn', function(e) {
+        e.preventDefault();
 
-          var qty = $(this).closest('.product-data').find('.qty-input').val();
-          var pro_id = $(this).val();
+        console.log("Buy button clicked");
 
-          // alert(prod_id);
+        var qty = $(this).closest('.product-data').find('.qty-input').val();
+        var pro_id = $(this).val();
 
-          $.ajax({
-               method: "POST",
-               url: "functions/addtocartfunctions.php",
-               data: {
-               "product_id": pro_id,       
-               "product_qty": qty,         
-               "scope": "addtoCart"
-               },
-
-               success: function(response){
-                    
-                    if(response == 201){
-                        alertify.success("Item added to cart");
-                     } else if(response == "ProductExists"){
-                         alertify.error("Product already in cart");
-                     }
-                     else if(response == 401){
-                         alertify.error("Login to continue");
-                     }
-                     else if(response == 500){
-                         alertify.error("Something went wrong");
-                     }   
-
-          }      
-     });
-     });
-     });
+        $.ajax({
+            method: "POST",
+            url: "functions/addtocartfunctions.php",
+            data: {
+                "product_id": pro_id,       
+                "product_qty": qty,         
+                "scope": "addtoCart"
+            },
+            success: function(response){
+                console.log("Response: ", response);
+                if(response == 201){
+                    alertify.success("Item added to cart");
+                } else if(response == "ProductExists"){
+                    alertify.error("Product already in cart");
+                }
+                else if(response == 401){
+                    alertify.error("Login to continue");
+                }
+                else if(response == 500){
+                    alertify.error("Something went wrong");
+                }   
+            }      
+        });
+    });
+});
