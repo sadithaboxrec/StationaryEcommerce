@@ -1,5 +1,6 @@
 <?php 
 include('functions/frontendfunctions.php');
+include('authenticate.php');
 include('includes/header.php');
 ?>
 <h3 class="mb-3 mt-2 pb-1 pb-md-0 mb-md-5 text-center">Cart Items</h3>
