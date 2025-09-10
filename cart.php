@@ -18,7 +18,7 @@ include('includes/header.php');
                                     if(mysqli_num_rows($cartitems) > 0){
                                         foreach($cartitems as $item){
                                 ?>
-                                    <tr>
+                                    <tr class="cart_data">
                                         
                                         <td>
                                             <img src="uploads/products/<?= $item['image'] ?>" alt="Product Image" class="rounded-circle" width="50" height="50">
@@ -29,7 +29,10 @@ include('includes/header.php');
                                         <td><?= htmlspecialchars($item['selling_price']); ?></td>
 
                                         <td>
+                                            <input type="hidden" class="product_id"  value="<?php echo $item['product_id']; ?>">
+                                            <button class="btn btn-sm btn-outline-secondary decrease updateQty">-</button>
                                             <input type="number" class="qty-input" value="<?php echo $item['quantity']; ?>" min="1" max="10">
+                                            <button class="btn btn-sm btn-outline-secondary increase updateQty">+</button>
                                         </td>
 
 

@@ -43,3 +43,50 @@ $(document).ready(function() {
         });
     });
 });
+
+
+$('.increase').click(function (e) {
+    e.preventDefault();
+    let $container = $(this).closest('.cart_data');
+    let $qtyInput = $container.find('.qty-input');
+    let qty = parseInt($qtyInput.val(), 10);
+
+    if (!isNaN(qty) && qty < 10) {
+        $qtyInput.val(++qty);
+        updateQuantity($container);
+    }
+});
+
+$('.decrease').click(function (e) {
+    e.preventDefault();
+    let $container = $(this).closest('.cart_data');
+    let $qtyInput = $container.find('.qty-input');
+    let qty = parseInt($qtyInput.val(), 10);
+
+    if (!isNaN(qty) && qty > 1) {
+        $qtyInput.val(--qty);
+        updateQuantity($container); 
+    }
+});
+
+function updateQuantity($container) {
+    let qty = $container.find('.qty-input').val();
+    let pro_id = $container.find('.product_id').val();
+
+    $.ajax({
+        method: "POST",
+        url: "functions/addtocartfunctions.php",
+        data: {
+            "product_id": pro_id,
+            "product_qty": qty,
+            "scope": "updateQty"
+        },
+        success: function (response) {
+            if (response == 200) {
+                console.log("Quantity updated for product ID: " + pro_id);
+            } else {
+                console.error("Error: " + response);
+            }
+        }
+    });
+}

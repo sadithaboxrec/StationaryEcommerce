@@ -36,6 +36,35 @@ if(isset($_SESSION['authentication'])){
 
                 }
                     break;
+
+                case "updateQty":
+                    $pro_id= $_POST['product_id'];
+                    $pro_qty= $_POST['product_qty'];    
+
+                    $user_id= $_SESSION['authentication_user']['user_id'];
+
+                    $cart_existing_products="SELECT * FROM carts WHERE user_id='$user_id' AND product_id='$pro_id' ";
+                    $cart_existing_products_sql= mysqli_query($connection,$cart_existing_products);
+
+                    if(mysqli_num_rows($cart_existing_products_sql) > 0){
+                       
+                        $update_quanity_query= "UPDATE carts SET quantity='$pro_qty' WHERE user_id='$user_id' AND product_id='$pro_id' ";
+                        $update_quantity_query_sql= mysqli_query($connection,$update_quanity_query);
+
+                        if($update_quantity_query_sql){
+                            echo 200;
+                        }else{
+                            echo 500;
+                        }
+
+                    }else{
+                        echo "Somethng Went Wrong";
+                    }
+
+                    break;
+
+            
+
                 default:
                     echo 500;
 
